@@ -1,0 +1,22 @@
+{
+  "name": "yandex-translate",
+  "version": "0.0.1",
+  "description": "Yandex.Translate API client",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/sidorares/yandex-translate"
+  },
+  "keywords": [
+    "translate",
+    "yandex"
+  ],
+  "author": "Andrey Sidorov <sidorares@yandex.ru>",
+  "license": "MIT",
+  "dependencies": {
+    "request": "~2.16.6"
+  }
+}
