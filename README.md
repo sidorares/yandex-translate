@@ -15,8 +15,10 @@ translate.detect('Граждане Российской Федерации им�
 ```
 
 # License
-MIT. Yandex.Translate terms of service: http://legal.yandex.com/translate_api/
+MIT.
+
+Yandex.Translate terms of service: http://legal.yandex.com/translate_api/
 
 # See also
-(Google Translate client)[https://github.com/Marak/translate.js] by @marak
+[Google Translate client](https://github.com/Marak/translate.js) by @marak
 
