@@ -1,5 +1,5 @@
 var request = require('request');
-var endpoint = 'http://translate.yandex.net/api/v1/tr.json';
+var endpoint = 'https://translate.yandex.net/api/v1.5/tr.json';
 
 var jsonRequest = function(url, params, cb) {
   var handler = function(err, res) {
@@ -37,6 +37,7 @@ var translate  = function(text, opts, cb)
   jsonRequest(endpoint + '/translate', {
       form: {
         text: text,
+        key: opts.key
         format: opts.format,
         lang: opts.from ? opts.from + '-' + opts.to : opts.to
       }
@@ -61,6 +62,7 @@ var detect = function(text, opts, cb) {
   jsonRequest(endpoint + '/detect', {
         form: {
           text: text,
+          key: opts.key,
           format: opts.format
         }
      }, cb);
