@@ -37,7 +37,7 @@ var translate  = function(text, opts, cb)
   jsonRequest(endpoint + '/translate', {
       form: {
         text: text,
-        key: opts.key
+        key: opts.key,
         format: opts.format,
         lang: opts.from ? opts.from + '-' + opts.to : opts.to
       }
