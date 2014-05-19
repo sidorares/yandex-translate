@@ -3,9 +3,11 @@ yandex-translate
 
 [Yandex.Translate](http://api.yandex.com/translate/doc/dg/concepts/api-overview.xml) API client for node.js
 
+Please use [API key request form](http://api.yandex.com/key/form.xml?service=trnsl) to obtain key.
+
 ```js
 var translate = require('yandex-translate');
-translate('You can burn my house, steal my car, drink my liquor from an old fruitjar.', { to: 'ru' }, function(err, res) {
+translate('You can burn my house, steal my car, drink my liquor from an old fruitjar.', { to: 'ru', key: 'insert your API key here' }, function(err, res) {
   console.log(res.text);
 });
 
