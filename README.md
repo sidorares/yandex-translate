@@ -1,9 +1,9 @@
 yandex-translate
 ================
 
-[Yandex.Translate](http://api.yandex.com/translate/doc/dg/concepts/api-overview.xml) API client for node.js
+[Yandex.Translate](https://tech.yandex.com/translate/) API client for node.js
 
-Please use [API key request form](http://api.yandex.com/key/form.xml?service=trnsl) to obtain key.
+Please use [API key request form](https://tech.yandex.com/keys/get/?service=trnsl) to obtain key.
 
 ```js
 var translate = require('yandex-translate');
