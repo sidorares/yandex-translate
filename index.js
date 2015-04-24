@@ -19,67 +19,86 @@ var jsonRequest = function(url, params, cb) {
     request.post(url, params, handler);
 };
 
-var translate  = function(text, opts, cb)
-{
-  var topts = typeof opts;
-  if (topts == 'function' || topts == 'undefined') {
-    if (topts == 'function')
-      cb = opts;
-    opts = {
-      to: 'en',
-      format: 'text'
-    };
-  }
-  if (!opts.to)
-    opts.to = 'en';
-  if (!opts.format)
-    opts.format = 'text';
-  jsonRequest(endpoint + '/translate', {
-      form: {
-        text: text,
-        key: opts.key,
-        format: opts.format,
-        lang: opts.from ? opts.from + '-' + opts.to : opts.to
-      }
-  }, cb);
-};
+module.export = function(apiKey) {
 
-var getLanguages = function(cb) {
-  jsonRequest(endpoint + '/getLangs', { get: true }, cb);
-};
-
-var detect = function(text, opts, cb) {
-  var topts = typeof opts;
-  if (topts == 'function' || topts == 'undefined') {
-    if (topts == 'function')
-      cb = opts;
-    opts = {
-      format: 'text'
-    };
-  }
-  if (!opts.format)
-    opts.format = 'text';
-  jsonRequest(endpoint + '/detect', {
+  var translate = function translate(text, opts, cb)
+  {
+    var topts = typeof opts;
+    if (topts == 'function' || topts == 'undefined') {
+      if (topts == 'function')
+        cb = opts;
+      opts = {
+        to: 'en',
+        format: 'text'
+      };
+    }
+    opts.key = apiKey;
+    if (!opts.to)
+      opts.to = 'en';
+    if (!opts.format)
+      opts.format = 'text';
+    jsonRequest(endpoint + '/translate', {
         form: {
           text: text,
           key: opts.key,
-          format: opts.format
+          format: opts.format,
+          lang: opts.from ? opts.from + '-' + opts.to : opts.to
         }
-     }, cb);
-};
+    }, cb);
+  };
 
+  var getLanguages = function getLanguages(opts, cb) {
+    if (typeof opts == 'function')
+    {
+      cb = opts;
+      opts = {
+        key: apiKey
+      };
+    }
+    var qs = require('querystring');
+    jsonRequest(endpoint + '/getLangs?' + qs.stringify(opts), { get: true }, cb);
+  };
 
-module.exports = translate;
-module.exports.translate = translate; // make translate 'default' exported function
-module.exports.detect = detect;
-module.exports.getLangs = getLanguages;
+  var detect = function detect(text, opts, cb) {
+    var topts = typeof opts;
+    if (topts == 'function' || topts == 'undefined') {
+      if (topts == 'function')
+        cb = opts;
+      opts = {
+        format: 'text'
+      };
+    }
+    if (!opts.format)
+      opts.format = 'text';
+    opts.key = apiKey;
+    jsonRequest(endpoint + '/detect', {
+          form: {
+            text: text,
+            key: opts.key,
+            format: opts.format
+          }
+       }, cb);
+  };
+
+  return {
+    translate: translate,
+    getLanguages: getLanguages,
+    detect: detect
+  };
+}
 
 // simple inline test
 if (require.main === module) {
-  translate('Граждане Российской Федерации имеют право собираться мирно без оружия, проводить собрания, митинги и демонстрации, шествия и пикетирование', function(err, res) {
+
+  var yandex = module.export(process.env.YANDEXKEY);
+
+  yandex.translate('Граждане Российской Федерации имеют право собираться мирно без оружия, проводить собрания, митинги и демонстрации, шествия и пикетирование', function(err, res) {
     console.assert(err === null, "Got transport level errors");
     console.assert(res.code === 200, "Non 200 HTTP code");
     console.assert(res.lang === "ru-en", "Language autodetected incorrectly");
     console.log(res.text.join());
   });
+  //getLanguages( {  ui: 'uk' }, function(err, res) {
+  //  console.log(err, res);
+  //});
 }
