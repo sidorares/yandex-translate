@@ -6,8 +6,9 @@ yandex-translate
 Please use [API key request form](https://tech.yandex.com/keys/get/?service=trnsl) to obtain key.
 
 ```js
-var translate = require('yandex-translate');
-translate('You can burn my house, steal my car, drink my liquor from an old fruitjar.', { to: 'ru', key: 'insert your API key here' }, function(err, res) {
+var translate = require('yandex-translate')(key);
+
+translate('You can burn my house, steal my car, drink my liquor from an old fruitjar.', { to: 'ru' }, function(err, res) {
   console.log(res.text);
 });
 
