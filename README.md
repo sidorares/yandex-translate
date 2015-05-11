@@ -23,6 +23,6 @@ MIT.
 Yandex.Translate terms of service: http://legal.yandex.com/translate_api/
 
 # See also
-[Google Translate client](https://github.com/Marak/translate.js) by @marak
-[Hubot yandex translate](https://github.com/bevacqua/hubot-yandex-translate)
+- [Google Translate client](https://github.com/Marak/translate.js) by @marak
+- [Hubot yandex translate](https://github.com/bevacqua/hubot-yandex-translate)
 
