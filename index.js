@@ -19,10 +19,9 @@ var jsonRequest = function(url, params, cb) {
     request.post(url, params, handler);
 };
 
-module.export = function(apiKey) {
+module.exports = function(apiKey) {
 
-  var translate = function translate(text, opts, cb)
-  {
+  var translate = function translate(text, opts, cb) {
     var topts = typeof opts;
     if (topts == 'function' || topts == 'undefined') {
       if (topts == 'function')
@@ -90,7 +89,7 @@ module.export = function(apiKey) {
 // simple inline test
 if (require.main === module) {
 
-  var yandex = module.export(process.env.YANDEXKEY);
+  var yandex = module.exports(process.env.YANDEXKEY);
 
   yandex.translate('Граждане Российской Федерации имеют право собираться мирно без оружия, проводить собрания, митинги и демонстрации, шествия и пикетирование', function(err, res) {
     console.assert(err === null, "Got transport level errors");
@@ -98,7 +97,4 @@ if (require.main === module) {
     console.assert(res.lang === "ru-en", "Language autodetected incorrectly");
     console.log(res.text.join());
   });
-  //getLanguages( {  ui: 'uk' }, function(err, res) {
-  //  console.log(err, res);
-  //});
 }
