@@ -47,13 +47,11 @@ module.exports = function(apiKey) {
   };
 
   var getLanguages = function getLanguages(opts, cb) {
-    if (typeof opts == 'function')
-    {
+    if (typeof opts == 'function') {
       cb = opts;
-      opts = {
-        key: apiKey
-      };
+      opts = {};
     }
+    opts.key = apiKey;
     var qs = require('querystring');
     jsonRequest(endpoint + '/getLangs?' + qs.stringify(opts), { get: true }, cb);
   };
