@@ -1,6 +1,8 @@
 yandex-translate
 ================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/sidorares/yandex-translate.svg)](https://greenkeeper.io/)
+
 [Yandex.Translate](https://tech.yandex.com/translate/) API client for node.js
 
 Please use [API key request form](https://tech.yandex.com/keys/get/?service=trnsl) to obtain key.
